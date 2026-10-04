@@ -1,0 +1,19 @@
+name: Protokol Factcheck
+description: Проверяет структуру фактчекинга и собирает отчёт из Markdown
+author: Protokol
+branding:
+  icon: check-circle
+  color: blue
+inputs:
+  file:
+    description: Путь к Markdown-файлу для проверки
+    required: true
+    default: README.md
+outputs:
+  report:
+    description: Путь к созданному отчёту
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: python3 "${{ github.action_path }}/factcheck.py" "${{ inputs.file }}"
